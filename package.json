@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/michaelwhite404/caremetx-challenge/issues"
   },
-  "homepage": "https://github.com/michaelwhite404/caremetx-challenge#readme"
+  "homepage": "https://github.com/michaelwhite404/caremetx-challenge#readme",
+  "dependencies": {
+    "mongoose": "^6.7.4"
+  }
 }
