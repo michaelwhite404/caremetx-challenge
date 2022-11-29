@@ -1,0 +1,20 @@
+{
+  "name": "caremetx-challenge",
+  "version": "1.0.0",
+  "description": "Challenge for CareMetx",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelwhite404/caremetx-challenge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/michaelwhite404/caremetx-challenge/issues"
+  },
+  "homepage": "https://github.com/michaelwhite404/caremetx-challenge#readme"
+}
