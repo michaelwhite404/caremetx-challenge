@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "load-data": "ts-node ./src/scripts/loadData.ts"
+    "load-data": "ts-node ./src/scripts/loadData.ts",
+    "schedule-emails": "ts-node ./src/scripts/scheduleEmails.ts"
   },
   "repository": {
     "type": "git",

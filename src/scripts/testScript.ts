@@ -1,9 +1,10 @@
-import { csvToJson, loadCsv } from "../utils";
-import path from "path";
+import { addDays } from "../utils";
 
 const main = () => {
-  const csv = loadCsv(path.resolve(__dirname, "../../data.csv"));
-  const arr = csvToJson(csv, { delimeter: "|" });
+  console.log(addDays(new Date(), 1));
+  console.log(addDays(new Date(), 2));
+  console.log(addDays(new Date(), 3));
+  console.log(addDays(new Date(), 4));
 };
 
 main();
