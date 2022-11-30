@@ -4,7 +4,8 @@
   "description": "Challenge for CareMetx",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "load-data": "ts-node ./src/scripts/loadData.ts"
   },
   "repository": {
     "type": "git",

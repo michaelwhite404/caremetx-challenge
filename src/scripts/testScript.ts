@@ -1,5 +1,4 @@
-import loadCsv from "../utils/loadCsv";
-import csvToJson from "../utils/csvToJson";
+import { csvToJson, loadCsv } from "../utils";
 import path from "path";
 
 const main = () => {

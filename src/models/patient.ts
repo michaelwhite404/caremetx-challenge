@@ -19,6 +19,4 @@ const patientSchema = new Schema({
   mobilePhone: { type: String },
 });
 
-const Patient = model("Patient", patientSchema);
-
-export default Patient;
+export const Patient = model("Patient", patientSchema);

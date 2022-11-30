@@ -1,6 +1,6 @@
-import camalize from "./camelize";
+import { camalize } from ".";
 
-const csvToJson = (data: string, options: ParseOptions = { delimeter: "|" }) => {
+export const csvToJson = (data: string, options: ParseOptions = { delimeter: "|" }) => {
   const arr = data.split(/\r?\n|\r|\n/g);
   const headers = arr.shift()!.split(options.delimeter).map(camalize);
   const rows = arr.map((row) => row.split(options.delimeter));
@@ -11,5 +11,3 @@ interface ParseOptions {
   delimeter: Delimeter;
 }
 type Delimeter = "," | "|" | " ";
-
-export default csvToJson;

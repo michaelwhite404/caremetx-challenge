@@ -5,6 +5,4 @@ const emailSchema = new Schema({
   scheduled_date: { type: String, required: true },
 });
 
-const Email = model("Email", emailSchema);
-
-export default Email;
+export const Email = model("Email", emailSchema);
