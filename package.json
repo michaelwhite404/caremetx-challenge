@@ -4,7 +4,7 @@
   "description": "Challenge for CareMetx",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "load-data": "ts-node ./src/scripts/loadData.ts",
     "schedule-emails": "ts-node ./src/scripts/scheduleEmails.ts"
   },
@@ -20,6 +20,10 @@
   },
   "homepage": "https://github.com/michaelwhite404/caremetx-challenge#readme",
   "dependencies": {
+    "jest": "^29.3.1",
     "mongoose": "^6.7.4"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.3"
   }
 }
