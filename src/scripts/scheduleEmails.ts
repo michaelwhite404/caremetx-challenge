@@ -3,7 +3,7 @@ import { Email, Patient } from "../models";
 import { addDays } from "../utils";
 
 const scheduleEmails = async () => {
-  openDB();
+  await openDB();
   const consentingPatients = await Patient.find({ consent: "Y" });
   const emailsToAdd: any[] = [];
   consentingPatients.forEach((patient) => {
@@ -17,7 +17,7 @@ const scheduleEmails = async () => {
   });
   const emails = await Email.create(emailsToAdd);
   console.log(`${emails.length} email${emails.length > 1 ? "s" : ""} added!`);
-  closeDB();
+  await closeDB();
 };
 
 scheduleEmails().catch(console.log);

@@ -3,7 +3,7 @@ import { Patient } from "../models";
 import pluralize from "pluralize";
 
 const missingFirstName = async () => {
-  openDB();
+  await openDB();
   const patients = await Patient.find({ $or: [{ firstName: { $exists: 0 } }, { firstName: "" }] });
   console.log(
     `There ${pluralize("are", patients.length)} ${pluralize(
@@ -15,7 +15,7 @@ const missingFirstName = async () => {
   if (patients.length > 0) {
     console.log("Missing first name IDs:", patients.map((patient) => patient.memberId).join(", "));
   }
-  closeDB();
+  await closeDB();
 };
 
 missingFirstName().catch(console.log);

@@ -3,7 +3,7 @@ import { closeDB, openDB } from "../db";
 import { Patient } from "../models";
 
 const consentMissingEmails = async () => {
-  openDB();
+  await openDB();
   const patients = await Patient.find({ $and: [{ emailAddress: "" }, { consent: "Y" }] });
   console.log(
     `There ${pluralize("are", patients.length)} ${pluralize(
@@ -15,7 +15,7 @@ const consentMissingEmails = async () => {
   if (patients.length > 0) {
     console.log("IDs:", patients.map((patient) => patient.memberId).join(", "));
   }
-  closeDB();
+  await closeDB();
 };
 
 consentMissingEmails();

@@ -1,11 +1,8 @@
 import { closeDB, openDB } from "../db";
-import { Email } from "../models";
+import { Email, Patient } from "../models";
 
-beforeAll(() => {
-  openDB();
-});
-
-afterAll(() => closeDB());
+beforeAll(async () => await openDB());
+afterAll(async () => await closeDB());
 
 describe("CareMetX challenge tests", () => {
   it("Verify the data in flat file matches the data in Patients collection.", () => {
@@ -21,5 +18,4 @@ describe("CareMetX challenge tests", () => {
   it("Verify emails for each patient are scheduled correctly.", () => {
     throw new Error("Test Not Implemented");
   });
-  closeDB();
 });
