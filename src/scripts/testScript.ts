@@ -1,10 +1,22 @@
+import { closeDB, openDB } from "../db";
+import { Patient } from "../models";
 import { addDays } from "../utils";
 
-const main = () => {
-  console.log(addDays(new Date(), 1));
-  console.log(addDays(new Date(), 2));
-  console.log(addDays(new Date(), 3));
-  console.log(addDays(new Date(), 4));
+const main = async () => {
+  await openDB();
+  const data = await Patient.aggregate([
+    { $match: { consent: "Y" } },
+    {
+      $lookup: {
+        from: "emails",
+        localField: "_id",
+        foreignField: "patient",
+        as: "emails",
+      },
+    },
+  ]);
+  console.log(data.every((patient) => patient.emails.length === 4));
+  await closeDB();
 };
 
 main();
