@@ -7,7 +7,8 @@
     "test": "jest",
     "load-data": "ts-node ./src/scripts/loadData.ts",
     "schedule-emails": "ts-node ./src/scripts/scheduleEmails.ts",
-    "missing-first-names": "ts-node ./src/scripts/missingFirstNames.ts"
+    "missing-first-names": "ts-node ./src/scripts/missingFirstNames.ts",
+    "consent-missing-emails": "ts-node ./src/scripts/consentMissingEmails.ts"
   },
   "repository": {
     "type": "git",

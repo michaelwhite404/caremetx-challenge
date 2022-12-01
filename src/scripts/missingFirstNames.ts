@@ -6,7 +6,11 @@ const missingFirstName = async () => {
   openDB();
   const patients = await Patient.find({ $or: [{ firstName: { $exists: 0 } }, { firstName: "" }] });
   console.log(
-    `There are ${pluralize("patients", patients.length, true)} with a missing first name.`
+    `There ${pluralize("are", patients.length)} ${pluralize(
+      "patients",
+      patients.length,
+      true
+    )} with a missing first name.`
   );
   if (patients.length > 0) {
     console.log("Missing first name IDs:", patients.map((patient) => patient.memberId).join(", "));
