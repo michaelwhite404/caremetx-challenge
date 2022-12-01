@@ -2,7 +2,7 @@ import { closeDB, openDB } from "../db";
 import { Patient } from "../models";
 import pluralize from "pluralize";
 
-const missingFirstName = async () => {
+export const missingFirstNames = async () => {
   await openDB();
   const patients = await Patient.find({ $or: [{ firstName: { $exists: 0 } }, { firstName: "" }] });
   console.log(
@@ -17,5 +17,3 @@ const missingFirstName = async () => {
   }
   await closeDB();
 };
-
-missingFirstName().catch(console.log);

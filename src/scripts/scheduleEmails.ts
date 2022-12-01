@@ -2,7 +2,7 @@ import { closeDB, openDB } from "../db";
 import { Email, Patient } from "../models";
 import { addDays } from "../utils";
 
-const scheduleEmails = async () => {
+export const scheduleEmails = async () => {
   await openDB();
   const consentingPatients = await Patient.find({ consent: "Y" });
   const emailsToAdd: any[] = [];
@@ -20,5 +20,3 @@ const scheduleEmails = async () => {
   console.log(`${emails.length} email${emails.length > 1 ? "s" : ""} added!`);
   await closeDB();
 };
-
-scheduleEmails().catch(console.log);

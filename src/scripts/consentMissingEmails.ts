@@ -2,7 +2,7 @@ import pluralize from "pluralize";
 import { closeDB, openDB } from "../db";
 import { Patient } from "../models";
 
-const consentMissingEmails = async () => {
+export const consentMissingEmails = async () => {
   await openDB();
   const patients = await Patient.find({ $and: [{ emailAddress: "" }, { consent: "Y" }] });
   console.log(
@@ -17,5 +17,3 @@ const consentMissingEmails = async () => {
   }
   await closeDB();
 };
-
-consentMissingEmails();
