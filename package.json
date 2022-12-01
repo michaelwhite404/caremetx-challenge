@@ -1,10 +1,12 @@
 {
-  "name": "caremetx-challenge",
+  "name": "caremetx",
   "version": "1.0.0",
   "description": "Challenge for CareMetx",
   "main": "index.js",
+  "preferGlobal": true,
+  "bin": "./dist/index.js",
   "scripts": {
-    "start": "ts-node ./src/index.ts",
+    "start": "node ./dist/index.js",
     "test": "jest",
     "load-data": "ts-node ./src/scripts/loadData.ts",
     "schedule-emails": "ts-node ./src/scripts/scheduleEmails.ts",
@@ -23,6 +25,7 @@
   },
   "homepage": "https://github.com/michaelwhite404/caremetx-challenge#readme",
   "dependencies": {
+    "chalk": "^4.1.2",
     "inquirer": "^8.2.5",
     "jest": "^29.3.1",
     "mongoose": "^6.7.4",

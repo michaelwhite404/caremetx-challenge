@@ -1,3 +1,4 @@
+import { bgGreen, green } from "chalk";
 import { closeDB, openDB } from "../db";
 import { Email, Patient } from "../models";
 import { addDays } from "../utils";
@@ -17,6 +18,9 @@ export const scheduleEmails = async () => {
     });
   });
   const emails = await Email.create(emailsToAdd);
-  console.log(`${emails.length} email${emails.length > 1 ? "s" : ""} added!`);
+  console.log(
+    bgGreen(" SUCCESS "),
+    green(`${emails.length} email${emails.length > 1 ? "s" : ""} added!`)
+  );
   await closeDB();
 };
