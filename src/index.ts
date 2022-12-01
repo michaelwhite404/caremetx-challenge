@@ -3,6 +3,7 @@
 import inquirer from "inquirer";
 import * as scripts from "./scripts";
 import { dim, magenta } from "chalk";
+import { exec } from "child_process";
 
 type ProgramState = "start" | "reset";
 
@@ -25,7 +26,7 @@ const generateQuestion = (state: ProgramState) => [
         type: "choice",
         value: "consent-missing-emails",
       },
-      { name: "Run Tests", type: "choice", value: "test" },
+      // { name: "Run Tests", type: "choice", value: "test" },
       { type: "separator" },
       { name: "End Program", type: "choice", value: "end" },
     ],
@@ -47,9 +48,6 @@ const main = async (state: ProgramState) => {
         break;
       case "consent-missing-emails":
         scripts.consentMissingEmails();
-        break;
-      case "test":
-        console.log(magenta("Will be done soon!"));
         break;
       default:
         return console.log(magenta("Have a great day!"));
