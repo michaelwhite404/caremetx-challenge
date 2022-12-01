@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 import inquirer from "inquirer";
+import { program } from "commander";
 import * as scripts from "./scripts";
 import { dim, magenta } from "chalk";
-import { exec } from "child_process";
 
 type ProgramState = "start" | "reset";
 
@@ -53,7 +53,7 @@ const main = async (state: ProgramState) => {
         return console.log(magenta("Have a great day!"));
     }
     setTimeout(() => {
-      console.log(dim("───────────────────────────────────────────────────"));
+      console.log("");
       main("reset");
     }, 1000);
   } catch (err) {
@@ -61,4 +61,26 @@ const main = async (state: ProgramState) => {
   }
 };
 
-main("start");
+program
+  .name("caremetx")
+  .description("CareMetX Challenge")
+  .action(() => main("start"));
+
+program.command("load-data").description("Load Patient Data").action(scripts.loadData);
+
+program
+  .command("schedule-emails")
+  .description("Schedule Patient Emails")
+  .action(scripts.scheduleEmails);
+
+program
+  .command("missing-first-names")
+  .description("Find Patients with missing first name")
+  .action(scripts.missingFirstNames);
+
+program
+  .command("consent-missing-emails")
+  .description("Find consenting patients without an email")
+  .action(scripts.consentMissingEmails);
+
+program.parse();

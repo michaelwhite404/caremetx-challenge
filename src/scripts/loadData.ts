@@ -10,7 +10,7 @@ export const loadData = async () => {
   const data = csvToJson(csv, { delimeter: "|" });
   const patients = await Patient.create(data);
   console.log(
-    bgGreen(" SUCCESS "),
+    bgGreen.black(" SUCCESS "),
     green(`Data added! ${patients.length} record${patients.length > 1 ? "s" : ""} inserted.`)
   );
   await closeDB();

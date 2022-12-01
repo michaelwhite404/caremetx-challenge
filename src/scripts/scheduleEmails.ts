@@ -19,7 +19,7 @@ export const scheduleEmails = async () => {
   });
   const emails = await Email.create(emailsToAdd);
   console.log(
-    bgGreen(" SUCCESS "),
+    bgGreen.black(" SUCCESS "),
     green(`${emails.length} email${emails.length > 1 ? "s" : ""} added!`)
   );
   await closeDB();
