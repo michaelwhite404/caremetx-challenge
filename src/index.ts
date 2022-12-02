@@ -91,9 +91,12 @@ program
   .description("Find consenting patients without an email")
   .action(scripts.consentMissingEmails);
 
-program.command("test").action(() => {
-  cp.spawn("npm", ["test"], { stdio: "inherit" });
-});
+program
+  .command("test")
+  .description("Runs automated tests")
+  .action(() => {
+    cp.spawn("npm", ["test"], { stdio: "inherit" });
+  });
 
 program.parse();
 
