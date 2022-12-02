@@ -3,7 +3,8 @@
 import inquirer from "inquirer";
 import { program } from "commander";
 import * as scripts from "./scripts";
-import { dim, magenta } from "chalk";
+import { magenta } from "chalk";
+import figlet from "figlet";
 
 type ProgramState = "start" | "reset";
 
@@ -34,6 +35,7 @@ const generateQuestion = (state: ProgramState) => [
 ];
 
 const main = async (state: ProgramState) => {
+  if (state === "start") console.log(await generateAsciiArt());
   const value = await inquirer.prompt(generateQuestion(state));
   try {
     switch (value.script) {
@@ -84,3 +86,24 @@ program
   .action(scripts.consentMissingEmails);
 
 program.parse();
+
+async function generateAsciiArt() {
+  return new Promise((resolve, reject) => {
+    figlet.text(
+      "CareMetX",
+      {
+        font: "ANSI Shadow",
+        horizontalLayout: "default",
+        verticalLayout: "default",
+      },
+      function (err, data) {
+        if (err) {
+          console.log("Something went wrong...");
+          console.dir(err);
+          reject(err);
+        }
+        resolve(data);
+      }
+    );
+  });
+}
