@@ -2,7 +2,7 @@
   "name": "caremetx",
   "version": "1.0.0",
   "description": "Challenge for CareMetx",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "preferGlobal": true,
   "bin": "./dist/index.js",
   "scripts": {
