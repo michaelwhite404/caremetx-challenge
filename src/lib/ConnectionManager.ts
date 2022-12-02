@@ -21,6 +21,11 @@ class ConnectionManager {
     }
     return str;
   }
+
+  removeString() {
+    this.conf.delete("connectionString");
+    return;
+  }
 }
 
 export default ConnectionManager;

@@ -37,10 +37,6 @@ const generateQuestion = (state: ProgramState) => [
 ];
 
 const main = async (state: ProgramState) => {
-  openDB().catch((err) => {
-    console.log(err.message);
-    process.exit(1);
-  });
   try {
     const value = await inquirer.prompt(generateQuestion(state));
     switch (value.script) {
@@ -72,6 +68,10 @@ const main = async (state: ProgramState) => {
 program.name("caremetx").description("CareMetX Challenge");
 
 if (process.argv.length === 2) {
+  openDB().catch((err) => {
+    console.log(err.message);
+    process.exit(1);
+  });
   program.action(async () => {
     console.log(await generateAsciiArt());
     setTimeout(() => main("start"), 250);
@@ -106,6 +106,11 @@ program
   .command("connect")
   .description("Add MongoDB connection string")
   .action(scripts.addConnectionString);
+
+program
+  .command("disconnect")
+  .description("Remove MongoDB connection string")
+  .action(scripts.removeConnectionString);
 
 program.parse();
 
