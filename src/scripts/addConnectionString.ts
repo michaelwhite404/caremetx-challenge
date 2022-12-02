@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import inquirer from "inquirer";
 import { blueBright, green, red } from "chalk";
+import ora from "ora";
 import ConnectionManager from "../lib/ConnectionManager";
 
 export const addConnectionString = async () => {
@@ -9,22 +10,22 @@ export const addConnectionString = async () => {
       type: "input",
       prefix: "",
       name: "connectionString",
-      message: green`Enter your connection string:`,
+      message: blueBright`Enter your connection string:`,
     })
     .then(async ({ connectionString }) => {
-      mongoose
-        .connect(connectionString)
-        .then((m) => {
-          new ConnectionManager().setString(connectionString);
-          console.log(blueBright`Connection String Set!`);
-          m.disconnect();
-        })
-        .catch((err) => {
-          console.log(red`${err.message}`);
-          process.exit(1);
-        });
+      const spinner = ora({ text: "Connecting..." }).start();
+      setTimeout(() => {
+        mongoose
+          .connect(connectionString)
+          .then((m) => {
+            new ConnectionManager().setString(connectionString);
+            spinner.succeed(green` Connection String Set!`);
+            m.disconnect();
+          })
+          .catch((err) => {
+            spinner.fail(red` ${err.message}`);
+            process.exit(1);
+          });
+      }, 500);
     });
-  // const mongoose = await connect(connectionString);
-  // console.log(mongoose);
-  // mongoose.disconnect();
 };
