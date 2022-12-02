@@ -68,10 +68,7 @@ const main = async (state: ProgramState) => {
 program.name("caremetx").description("CareMetX Challenge");
 
 if (process.argv.length === 2) {
-  openDB().catch((err) => {
-    console.log(err.message);
-    process.exit(1);
-  });
+  openDB();
   program.action(async () => {
     console.log(await generateAsciiArt());
     setTimeout(() => main("start"), 250);
