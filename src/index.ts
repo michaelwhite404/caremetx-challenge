@@ -5,6 +5,7 @@ import { program } from "commander";
 import * as scripts from "./scripts";
 import { magenta } from "chalk";
 import figlet from "figlet";
+import cp from "child_process";
 
 type ProgramState = "start" | "reset";
 
@@ -89,6 +90,10 @@ program
   .command("consent-missing-emails")
   .description("Find consenting patients without an email")
   .action(scripts.consentMissingEmails);
+
+program.command("test").action(() => {
+  cp.spawn("npm", ["test"], { stdio: "inherit" });
+});
 
 program.parse();
 
