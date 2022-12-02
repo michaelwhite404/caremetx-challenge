@@ -49,3 +49,7 @@ The first command that should be run is the '_**caremetx connect**_' command. Th
 | caremetx test                   |           Runs automated tests            |
 | caremetx disconnect             |     Remove MongoDB connection string      |
 | caremetx help                   |         Display help for command          |
+
+## Video
+
+View the development process of this program (https://www.loom.com/share/a2480212e2754753b0ce60552b7c61d0)
