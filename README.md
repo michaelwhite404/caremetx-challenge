@@ -52,4 +52,4 @@ The first command that should be run is the '_**caremetx connect**_' command. Th
 
 ## Video
 
-View the development process of this program (https://www.loom.com/share/a2480212e2754753b0ce60552b7c61d0)
+[View the development process of this program](https://www.loom.com/share/a2480212e2754753b0ce60552b7c61d0)
