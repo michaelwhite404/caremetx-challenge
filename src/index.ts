@@ -6,6 +6,7 @@ import * as scripts from "./scripts";
 import { magenta } from "chalk";
 import figlet from "figlet";
 import cp from "child_process";
+import { closeDB, openDB } from "./db";
 
 type ProgramState = "start" | "reset";
 
@@ -36,8 +37,12 @@ const generateQuestion = (state: ProgramState) => [
 ];
 
 const main = async (state: ProgramState) => {
-  const value = await inquirer.prompt(generateQuestion(state));
+  openDB().catch((err) => {
+    console.log(err.message);
+    process.exit(1);
+  });
   try {
+    const value = await inquirer.prompt(generateQuestion(state));
     switch (value.script) {
       case "load-data":
         scripts.loadData();
@@ -52,14 +57,15 @@ const main = async (state: ProgramState) => {
         scripts.consentMissingEmails();
         break;
       default:
-        return console.log(magenta("Have a great day!"));
+        console.log(magenta("Have a great day!"));
+        return closeDB();
     }
     setTimeout(() => {
       console.log("");
       main("reset");
     }, 1000);
   } catch (err) {
-    console.log(err);
+    console.log((err as Error).message);
   }
 };
 
@@ -68,9 +74,7 @@ program.name("caremetx").description("CareMetX Challenge");
 if (process.argv.length === 2) {
   program.action(async () => {
     console.log(await generateAsciiArt());
-    setTimeout(() => {
-      main("start");
-    }, 250);
+    setTimeout(() => main("start"), 250);
   });
 }
 
@@ -97,6 +101,11 @@ program
   .action(() => {
     cp.spawn("npm", ["test"], { stdio: "inherit" });
   });
+
+program
+  .command("connect")
+  .description("Add MongoDB connection string")
+  .action(scripts.addConnectionString);
 
 program.parse();
 
