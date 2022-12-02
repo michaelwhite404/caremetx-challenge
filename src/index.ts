@@ -35,7 +35,6 @@ const generateQuestion = (state: ProgramState) => [
 ];
 
 const main = async (state: ProgramState) => {
-  if (state === "start") console.log(await generateAsciiArt());
   const value = await inquirer.prompt(generateQuestion(state));
   try {
     switch (value.script) {
@@ -63,10 +62,16 @@ const main = async (state: ProgramState) => {
   }
 };
 
-program
-  .name("caremetx")
-  .description("CareMetX Challenge")
-  .action(() => main("start"));
+program.name("caremetx").description("CareMetX Challenge");
+
+if (process.argv.length === 2) {
+  program.action(async () => {
+    console.log(await generateAsciiArt());
+    setTimeout(() => {
+      main("start");
+    }, 250);
+  });
+}
 
 program.command("load-data").description("Load Patient Data").action(scripts.loadData);
 
